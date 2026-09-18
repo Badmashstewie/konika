@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --ink: #192522;
+  --muted: #64716d;
+  --paper: #f4f1e9;
+  --card: #fbfaf6;
+  --line: #d8ded6;
+  --accent: #df5e38;
+  --accent-soft: #f2d8c9;
+  --night: #193832;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: 'Manrope', sans-serif;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  opacity: 0.32;
+  background-image: linear-gradient(rgba(25, 56, 50, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(25, 56, 50, 0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black, transparent 76%);
+}
+
+.clock-shell {
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 72px 0 30px;
+}
+
+.page-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+  padding-bottom: 52px;
+}
+
+.eyebrow,
+.city-region,
+.city-code,
+.live-status,
+.page-footer {
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  margin: 0 0 18px;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 500px;
+  margin-bottom: 12px;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  letter-spacing: -0.06em;
+  line-height: 0.92;
+}
+
+.intro {
+  max-width: 390px;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.live-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  padding-top: 9px;
+  color: var(--night);
+  font-size: 0.7rem;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-soft);
+}
+
+.clock-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+
+.clock-card {
+  display: flex;
+  min-height: 270px;
+  grid-column: span 4;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px;
+  border: 1px solid var(--line);
+  background: rgba(251, 250, 246, 0.84);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.clock-card:hover {
+  border-color: var(--accent);
+  box-shadow: 8px 8px 0 var(--accent-soft);
+  transform: translate(-3px, -3px);
+}
+
+.clock-card--featured {
+  grid-column: span 6;
+  border-color: var(--night);
+  color: #f8f5ec;
+  background: var(--night);
+}
+
+.clock-card--featured:hover {
+  box-shadow: 8px 8px 0 var(--accent);
+}
+
+.card-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.city-region,
+.city-code {
+  font-size: 0.66rem;
+}
+
+.city-region {
+  color: var(--muted);
+}
+
+.clock-card--featured .city-region {
+  color: #9cb6ab;
+}
+
+.city-code {
+  color: var(--accent);
+}
+
+h2 {
+  margin: 30px 0 10px;
+  font-size: 1.6rem;
+  letter-spacing: -0.04em;
+}
+
+.time {
+  display: block;
+  margin-top: auto;
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(2rem, 4vw, 3.7rem);
+  font-weight: 500;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.date {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.clock-card--featured .date {
+  color: #9cb6ab;
+}
+
+.page-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 28px;
+  color: var(--muted);
+  font-size: 0.65rem;
+}
+
+.footer-mark {
+  color: var(--accent);
+}
+
+@media (max-width: 760px) {
+  .clock-shell {
+    width: min(100% - 28px, 560px);
+    padding-top: 42px;
+  }
+
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+    padding-bottom: 34px;
+  }
+
+  h1 {
+    font-size: clamp(3.5rem, 18vw, 6rem);
+  }
+
+  .clock-card,
+  .clock-card--featured {
+    grid-column: span 12;
+    min-height: 230px;
+  }
+
+  .time {
+    font-size: clamp(2.6rem, 13vw, 4.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clock-card {
+    transition: none;
+  }
+}
